@@ -19,7 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "usb_device.h"
-
+#include "usbd_cdc_if.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -66,6 +66,13 @@ void ledBlink()
 	HAL_GPIO_TogglePin(GPIOB, LED_GREEN_Pin|LED_RED_Pin);
 	HAL_Delay(5000);
 }
+
+void USBTest()
+{
+	uint16_t data = "Hello ST MicroController";
+	CDC_Transmit_FS(data,Strlen(data));
+}
+
 /* USER CODE END 0 */
 
 /**
