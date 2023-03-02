@@ -47,7 +47,7 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
-
+uint8_t buffer[64];
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -118,7 +118,10 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  if (buffer[0] == 1)
+	  {
+		  ledBlink();
+	  }
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
