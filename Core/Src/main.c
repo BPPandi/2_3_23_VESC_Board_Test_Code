@@ -82,6 +82,22 @@ void DRV8301_Disable()
 {
 	HAL_GPIO_WritePin(GPIOB, EN_GATE_Pin, GPIO_PIN_RESET);
 }
+void DRV8301_NormalPWM()
+{
+	TIM1->CCR1 = 51;
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
+	HAL_Delay(1);
+	TIM1->CCR2 = 51;
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+	HAL_Delay(1);
+	TIM1->CCR3 = 51;
+	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
+	HAL_Delay(1);
+}
+
 /* USER CODE END 0 */
 
 /**
