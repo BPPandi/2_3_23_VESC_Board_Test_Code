@@ -28,7 +28,26 @@
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+uint16_t PhaseA=0;
+uint16_t k=0,l=0,CH2_DC=16;
+uint32_t PhaseA_wave[128 ] = {
+		50,54,58,62,65,69,72,76,79,82,85,88,90,92,94,96,97,98,99,100,100,100,100,99,
+		98,97,95,93,91,89,86,84,81,77,74,71,67,63,60,56,52,48,44,40,37,33,29,26,
+		23,19,16,14,11,9,7,5,3,2,3,4,6,8,10,12,15,
+		18,21,24,28,31,35,38,42,46,50
+};
+uint32_t PhaseB_wave[128 ] = {
+		93,91,89,86,84,81,77,74,71,67,63,60,56,52,48,44,40,37,33,29,26,
+		23,19,16,14,11,9,7,5,3,2,3,4,6,8,10,12,15,
+		18,21,24,28,31,35,38,42,46,50,50,54,58,62,65,69,72,76,79,82,85,88,90,92,
+		94,96,97,98,99,100,100,100,100,99,98,97,95,
+};
+uint32_t PhaseC_wave[128 ] = {
+		7,5,3,2,3,4,6,8,10,12,15,18,21,24,28,31,35,38,42,46,50,
+		50,54,58,62,65,69,72,76,79,82,85,88,90,92,94,96,97,98,99,100,100,100,100,99,
+		98,97,95,93,91,89,86,84,81,77,74,71,67,63,60,56,52,48,44,40,37,33,29,26,
+		23,19,16,14,11,9
+};
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -97,6 +116,33 @@ void DRV8301_NormalPWM()
 	HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
 	HAL_Delay(1);
 }
+void delay_us (uint16_t us)
+{
+	__HAL_TIM_SET_COUNTER(&htim2,0);  // set the counter value a 0
+	while (__HAL_TIM_GET_COUNTER(&htim2) < us);  // wait for the counter to reach the us input in the parameter
+}
+void DRV8301_CommutationPWM()
+{
+	for(k=0;k<73;k++)
+	{
+		PhaseA = PhaseA +1;
+		TIM1->CCR1 = PhaseA_wave[PhaseA];
+		HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
+		HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_1);
+		TIM1->CCR2 = PhaseB_wave[PhaseA];
+		HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+		HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_2);
+		TIM1->CCR3 = PhaseC_wave[PhaseA];
+		HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_3);
+		HAL_TIMEx_PWMN_Start(&htim1, TIM_CHANNEL_3);
+		delay_us(330);
+	}
+	if(k>=73)
+	{
+		PhaseA=0;
+		k=0;
+	}
+	}
 
 /* USER CODE END 0 */
 
