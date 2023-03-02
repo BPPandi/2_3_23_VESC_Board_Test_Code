@@ -61,7 +61,11 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void ledBlink()
+{
+	HAL_GPIO_TogglePin(GPIOB, LED_GREEN_Pin|LED_RED_Pin);
+	HAL_Delay(5000);
+}
 /* USER CODE END 0 */
 
 /**
