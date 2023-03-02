@@ -74,7 +74,14 @@ void USBTest()
 	CDC_Transmit_FS((uint8_t *)data, strlen(data));
 	HAL_Delay(1000);
 }
-
+void DRV8301_Enable()
+{
+	HAL_GPIO_WritePin(GPIOB, EN_GATE_Pin, GPIO_PIN_SET);
+}
+void DRV8301_Disable()
+{
+	HAL_GPIO_WritePin(GPIOB, EN_GATE_Pin, GPIO_PIN_RESET);
+}
 /* USER CODE END 0 */
 
 /**
@@ -121,6 +128,10 @@ int main(void)
 	  if (buffer[0] == 1)
 	  {
 		  ledBlink();
+	  }
+	  if (buffer[0] == 2)
+	  {
+	  	  ledBlink();
 	  }
     /* USER CODE BEGIN 3 */
   }
