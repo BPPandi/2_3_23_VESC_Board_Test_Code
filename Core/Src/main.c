@@ -259,106 +259,115 @@ void CAAF()
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[0] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[0]);
-	CDC_Transmit_FS("VSENS_1 = ", 10);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
-
 
 	VSENS_2();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[1] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[1]);
-	CDC_Transmit_FS("VSENS_2 = ", 10);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	VSENS_3();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[2] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[2]);
-	CDC_Transmit_FS("VSENS_3 = ", 10);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	TEMP_NTC();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[3] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[3]);
-	CDC_Transmit_FS("TEMP_NTC = ",11);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	ADC_EXT1();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[4] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[4]);
-	CDC_Transmit_FS("ADC_EXT1 = ", 11);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	ADC_EXT2();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[5] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[5]);
-	CDC_Transmit_FS("ADC_EXT2 = ", 11);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	CURREN_1();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[6] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[6]);
-	CDC_Transmit_FS("CURREN_1 = ", 11);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	CURREN_2();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[7] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[7]);
-	CDC_Transmit_FS("CURREN_2 = ", 11);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	CURREN_3();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[8] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
-	sprintf(strVal,"%hu\r\n",ADC_VAL[8]);
-	CDC_Transmit_FS("CURREN_3 = ", 11);
-	HAL_Delay(100);
-	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
 
 	TEMP_MOTOR();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[9] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[0]);
+	CDC_Transmit_FS("VSENS_1 = ", 10);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[1]);
+	CDC_Transmit_FS("VSENS_2 = ", 10);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[2]);
+	CDC_Transmit_FS("VSENS_3 = ", 10);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[3]);
+	CDC_Transmit_FS("TEMP_NTC = ",11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[4]);
+	CDC_Transmit_FS("ADC_EXT1 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[5]);
+	CDC_Transmit_FS("ADC_EXT2 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[6]);
+	CDC_Transmit_FS("CURREN_1 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[7]);
+	CDC_Transmit_FS("CURREN_2 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
+	sprintf(strVal,"%hu\r\n",ADC_VAL[8]);
+	CDC_Transmit_FS("CURREN_3 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
 	sprintf(strVal,"%hu\r\n",ADC_VAL[9]);
 	CDC_Transmit_FS("TEMP_MOTOR = ", 13);
 	HAL_Delay(100);
