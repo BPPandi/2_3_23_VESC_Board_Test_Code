@@ -256,7 +256,7 @@ void CAAF()
 {
 	VSENS_1();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[0] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[0]);
@@ -268,7 +268,7 @@ void CAAF()
 
 	VSENS_2();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[1] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[1]);
@@ -279,7 +279,7 @@ void CAAF()
 
 	VSENS_3();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[2] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[2]);
@@ -290,7 +290,7 @@ void CAAF()
 
 	TEMP_NTC();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[3] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[3]);
@@ -301,7 +301,7 @@ void CAAF()
 
 	ADC_EXT1();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[4] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[4]);
@@ -312,7 +312,7 @@ void CAAF()
 
 	ADC_EXT2();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[5] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[5]);
@@ -323,7 +323,7 @@ void CAAF()
 
 	CURREN_1();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[6] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[6]);
@@ -334,7 +334,7 @@ void CAAF()
 
 	CURREN_2();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[7] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[7]);
@@ -345,7 +345,7 @@ void CAAF()
 
 	CURREN_3();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[8] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[8]);
@@ -356,7 +356,7 @@ void CAAF()
 
 	TEMP_MOTOR();
 	HAL_ADC_Start(&hadc1);
-	HAL_ADC_PollForConversion(&hadc1,200);
+	HAL_ADC_PollForConversion(&hadc1,1000);
 	ADC_VAL[9] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 	sprintf(strVal,"%hu\r\n",ADC_VAL[9]);
