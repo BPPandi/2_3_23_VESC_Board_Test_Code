@@ -95,15 +95,25 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* hadc)
     /* Peripheral clock enable */
     __HAL_RCC_ADC1_CLK_ENABLE();
 
+    __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOA_CLK_ENABLE();
     /**ADC1 GPIO Configuration
+    PC0     ------> ADC1_IN10
+    PC1     ------> ADC1_IN11
+    PC2     ------> ADC1_IN12
     PA0-WKUP     ------> ADC1_IN0
     PA1     ------> ADC1_IN1
     PA2     ------> ADC1_IN2
     PA3     ------> ADC1_IN3
     PA5     ------> ADC1_IN5
     PA6     ------> ADC1_IN6
+    PC4     ------> ADC1_IN14
     */
+    GPIO_InitStruct.Pin = CURREN_1_Pin|CURREN_2_Pin|CURREN_3_Pin|TEMP_MOTOR_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+
     GPIO_InitStruct.Pin = VSENS_1_Pin|VSENS_2_Pin|VSENS_3_Pin|TEMP_NTC_Pin
                           |ADC_EXT1_Pin|ADC_EXT2_Pin;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
@@ -134,13 +144,19 @@ void HAL_ADC_MspDeInit(ADC_HandleTypeDef* hadc)
     __HAL_RCC_ADC1_CLK_DISABLE();
 
     /**ADC1 GPIO Configuration
+    PC0     ------> ADC1_IN10
+    PC1     ------> ADC1_IN11
+    PC2     ------> ADC1_IN12
     PA0-WKUP     ------> ADC1_IN0
     PA1     ------> ADC1_IN1
     PA2     ------> ADC1_IN2
     PA3     ------> ADC1_IN3
     PA5     ------> ADC1_IN5
     PA6     ------> ADC1_IN6
+    PC4     ------> ADC1_IN14
     */
+    HAL_GPIO_DeInit(GPIOC, CURREN_1_Pin|CURREN_2_Pin|CURREN_3_Pin|TEMP_MOTOR_Pin);
+
     HAL_GPIO_DeInit(GPIOA, VSENS_1_Pin|VSENS_2_Pin|VSENS_3_Pin|TEMP_NTC_Pin
                           |ADC_EXT1_Pin|ADC_EXT2_Pin);
 

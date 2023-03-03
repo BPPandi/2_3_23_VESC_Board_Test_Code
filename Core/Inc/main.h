@@ -59,6 +59,12 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define CURREN_1_Pin GPIO_PIN_0
+#define CURREN_1_GPIO_Port GPIOC
+#define CURREN_2_Pin GPIO_PIN_1
+#define CURREN_2_GPIO_Port GPIOC
+#define CURREN_3_Pin GPIO_PIN_2
+#define CURREN_3_GPIO_Port GPIOC
 #define VSENS_1_Pin GPIO_PIN_0
 #define VSENS_1_GPIO_Port GPIOA
 #define VSENS_2_Pin GPIO_PIN_1
@@ -71,6 +77,8 @@ void Error_Handler(void);
 #define ADC_EXT1_GPIO_Port GPIOA
 #define ADC_EXT2_Pin GPIO_PIN_6
 #define ADC_EXT2_GPIO_Port GPIOA
+#define TEMP_MOTOR_Pin GPIO_PIN_4
+#define TEMP_MOTOR_GPIO_Port GPIOC
 #define LED_GREEN_Pin GPIO_PIN_0
 #define LED_GREEN_GPIO_Port GPIOB
 #define LED_RED_Pin GPIO_PIN_1
