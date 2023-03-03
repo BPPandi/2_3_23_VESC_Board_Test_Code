@@ -23,6 +23,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
+#include "stdio.h"
 #include "string.h"
 /* USER CODE END Includes */
 
@@ -68,7 +69,7 @@ TIM_HandleTypeDef htim2;
 /* USER CODE BEGIN PV */
 ADC_ChannelConfTypeDef sConfig = {0};
 uint8_t buffer[64];
-uint16_t ADC_VAL[10];
+uint16_t ADC_VAL[10],strVal[16];
 
 /* USER CODE END PV */
 
@@ -96,7 +97,7 @@ void ledBlink()
 
 void USBTest()
 {
-	char *data = "Hello ST MicroController\n";
+	char *data = "Hello ST MicroController\r\n";
 	CDC_Transmit_FS((uint8_t *)data, strlen(data));
 	HAL_Delay(1000);
 }
@@ -249,90 +250,141 @@ void CAAF()
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[0] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[0]);
+	CDC_Transmit_FS("VSENS_1 = ", 10);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
+
 
 	VSENS_2();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[1] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[1]);
+	CDC_Transmit_FS("VSENS_2 = ", 10);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	VSENS_3();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[2] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[2]);
+	CDC_Transmit_FS("VSENS_3 = ", 10);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	TEMP_NTC();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[3] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[3]);
+	CDC_Transmit_FS("TEMP_NTC = ",11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	ADC_EXT1();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[4] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[4]);
+	CDC_Transmit_FS("ADC_EXT1 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	ADC_EXT2();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[5] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[5]);
+	CDC_Transmit_FS("ADC_EXT2 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	CURREN_1();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[6] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[6]);
+	CDC_Transmit_FS("CURREN_1 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	CURREN_2();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[7] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[7]);
+	CDC_Transmit_FS("CURREN_2 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	CURREN_3();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[8] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[8]);
+	CDC_Transmit_FS("CURREN_3 = ", 11);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 
 	TEMP_MOTOR();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,200);
 	ADC_VAL[9] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
+	sprintf(strVal,"%hu\r\n",ADC_VAL[9]);
+	CDC_Transmit_FS("TEMP_MOTOR = ", 13);
+	HAL_Delay(100);
+	CDC_Transmit_FS(strVal, 8);
+	HAL_Delay(100);
 }
 void IFunction()
 {
-	if (buffer[0] == 1)
+	if (buffer[0] == '1')
 	{
 		ledBlink();
 	}
-	if (buffer[0] == 2)
+	if (buffer[0] == '2')
 	{
 		USBTest();
 	}
-	if (buffer[0] == 3)
+	if (buffer[0] == '3')
 	{
 		CAAF();
 	}
-	if (buffer[0] == 4)
+	if (buffer[0] == '4')
 	{
 		DRV8301_Enable();
 	}
-	if (buffer[0] == 5)
+	if (buffer[0] == '5')
 	{
 		DRV8301_Disable();
 	}
-	if (buffer[0] == 6)
+	if (buffer[0] == '6')
 	{
 		DRV8301_NormalPWM();
 	}
-	if (buffer[0] == 7)
+	if (buffer[0] == '7')
 	{
-		DRV8301_NormalPWM();
+		DRV8301_CommutationPWM();
 	}
 }
 /* USER CODE END 0 */
@@ -459,7 +511,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 10;
+  hadc1.Init.NbrOfConversion = 1;
   hadc1.Init.DMAContinuousRequests = DISABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
