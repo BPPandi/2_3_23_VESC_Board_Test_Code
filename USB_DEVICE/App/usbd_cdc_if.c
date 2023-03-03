@@ -55,8 +55,6 @@ extern uint8_t buffer[64];
 
 /* USER CODE END PRIVATE_TYPES */
 
-
-
 /**
   * @}
   */
