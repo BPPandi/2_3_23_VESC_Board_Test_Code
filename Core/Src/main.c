@@ -66,7 +66,10 @@ TIM_HandleTypeDef htim1;
 TIM_HandleTypeDef htim2;
 
 /* USER CODE BEGIN PV */
+ADC_ChannelConfTypeDef sConfig = {0};
 uint8_t buffer[64];
+uint16_t ADC_VAL[10];
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -235,6 +238,69 @@ void TEMP_MOTOR()
 	Error_Handler();
 	}
 }
+void CAAF()
+{
+	VSENS_1();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[0] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	VSENS_2();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[1] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	VSENS_3();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[2] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	TEMP_NTC();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[3] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	ADC_EXT1();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[4] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	ADC_EXT2();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[5] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	CURREN_1();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[6] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	CURREN_2();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[7] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	CURREN_3();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[8] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+
+	TEMP_MOTOR();
+	HAL_ADC_Start(&hadc1);
+	HAL_ADC_PollForConversion(&hadc1,200);
+	ADC_VAL[9] = HAL_ADC_GetValue(&hadc1);
+	HAL_ADC_Stop(&hadc1);
+}
+
 /* USER CODE END 0 */
 
 /**
@@ -359,7 +425,7 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.NbrOfConversion = 10;
   hadc1.Init.DMAContinuousRequests = DISABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   if (HAL_ADC_Init(&hadc1) != HAL_OK)
