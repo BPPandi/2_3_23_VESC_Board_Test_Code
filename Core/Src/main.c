@@ -86,8 +86,12 @@ static void MX_TIM2_Init(void);
 /* USER CODE BEGIN 0 */
 void ledBlink()
 {
-	HAL_GPIO_TogglePin(GPIOB, LED_GREEN_Pin|LED_RED_Pin);
-	HAL_Delay(5000);
+	for (int ledCount=0;ledCount<6;ledCount++)
+	{
+		HAL_GPIO_TogglePin(GPIOB, LED_GREEN_Pin|LED_RED_Pin);
+		HAL_Delay(1000);
+	}
+	HAL_GPIO_WritePin(GPIOB, LED_GREEN_Pin|LED_RED_Pin, GPIO_PIN_RESET);
 }
 
 void USBTest()
@@ -300,7 +304,37 @@ void CAAF()
 	ADC_VAL[9] = HAL_ADC_GetValue(&hadc1);
 	HAL_ADC_Stop(&hadc1);
 }
-
+void IFunction()
+{
+	if (buffer[0] == 1)
+	{
+		ledBlink();
+	}
+	if (buffer[0] == 2)
+	{
+		USBTest();
+	}
+	if (buffer[0] == 3)
+	{
+		CAAF();
+	}
+	if (buffer[0] == 4)
+	{
+		DRV8301_Enable();
+	}
+	if (buffer[0] == 5)
+	{
+		DRV8301_Disable();
+	}
+	if (buffer[0] == 6)
+	{
+		DRV8301_NormalPWM();
+	}
+	if (buffer[0] == 7)
+	{
+		DRV8301_NormalPWM();
+	}
+}
 /* USER CODE END 0 */
 
 /**
@@ -344,7 +378,7 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	  IFunction();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
