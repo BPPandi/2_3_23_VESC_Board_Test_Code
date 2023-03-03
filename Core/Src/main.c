@@ -165,7 +165,8 @@ void VSENS_1()
 void VSENS_2()
 {
 	sConfig.Channel = ADC_CHANNEL_1;
-	sConfig.Rank = 2;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -174,7 +175,8 @@ void VSENS_2()
 void VSENS_3()
 {
 	sConfig.Channel = ADC_CHANNEL_2;
-	sConfig.Rank = 3;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -183,7 +185,8 @@ void VSENS_3()
 void TEMP_NTC()
 {
 	sConfig.Channel = ADC_CHANNEL_3;
-	sConfig.Rank = 4;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -192,7 +195,8 @@ void TEMP_NTC()
 void ADC_EXT1()
 {
 	sConfig.Channel = ADC_CHANNEL_5;
-	sConfig.Rank = 5;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -201,7 +205,8 @@ void ADC_EXT1()
 void ADC_EXT2()
 {
 	sConfig.Channel = ADC_CHANNEL_6;
-	sConfig.Rank = 6;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -210,7 +215,8 @@ void ADC_EXT2()
 void CURREN_1()
 {
 	sConfig.Channel = ADC_CHANNEL_10;
-	sConfig.Rank = 7;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -219,7 +225,8 @@ void CURREN_1()
 void CURREN_2()
 {
 	sConfig.Channel = ADC_CHANNEL_11;
-	sConfig.Rank = 8;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -228,7 +235,8 @@ void CURREN_2()
 void CURREN_3()
 {
 	sConfig.Channel = ADC_CHANNEL_12;
-	sConfig.Rank = 9;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
@@ -237,7 +245,8 @@ void CURREN_3()
 void TEMP_MOTOR()
 {
 	sConfig.Channel = ADC_CHANNEL_14;
-	sConfig.Rank = 10;
+	sConfig.Rank = 1;
+	sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
 	if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
 	{
 	Error_Handler();
