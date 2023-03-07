@@ -254,6 +254,8 @@ void TEMP_MOTOR()
 }
 void CAAF()
 {
+	for(int adc =0;adc<10;adc++)
+	{
 	VSENS_1();
 	HAL_ADC_Start(&hadc1);
 	HAL_ADC_PollForConversion(&hadc1,1000);
@@ -373,6 +375,8 @@ void CAAF()
 	HAL_Delay(100);
 	CDC_Transmit_FS(strVal, 8);
 	HAL_Delay(100);
+	}
+	buffer[0] = 0;
 }
 void IFunction()
 {
