@@ -1354,7 +1354,7 @@ void CAAF()
  8000bc2:	2108      	movs	r1, #8
  8000bc4:	4839      	ldr	r0, [pc, #228]	; (8000cac <CAAF+0x320>)
  8000bc6:	f008 f9e9 	bl	8008f9c <CDC_Transmit_FS>
-	HAL_Delay(100);
+	HAL_Delay(100); // VJPANDI
  8000bca:	2064      	movs	r0, #100	; 0x64
  8000bcc:	f000 fde8 	bl	80017a0 <HAL_Delay>
 

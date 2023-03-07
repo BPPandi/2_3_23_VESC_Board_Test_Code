@@ -338,7 +338,7 @@ void CAAF()
 	CDC_Transmit_FS("TEMP_NTC = ",11);
 	HAL_Delay(100);
 	CDC_Transmit_FS(strVal, 8);
-	HAL_Delay(100);
+	HAL_Delay(100); // VJPANDI
 
 	sprintf(strVal,"%hu\r\n",ADC_VAL[4]);
 	CDC_Transmit_FS("ADC_EXT1 = ", 11);
